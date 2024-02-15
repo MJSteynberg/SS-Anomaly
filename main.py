@@ -50,4 +50,4 @@ def signature():
         signature_page.content()
 
 if __name__ in {"__main__", "__mp_main__"}:
-    ui.run(port=native.find_open_port(), title="Signature Anomaly Detection Methods")
+    ui.run(title="Signature Anomaly Detection Methods")

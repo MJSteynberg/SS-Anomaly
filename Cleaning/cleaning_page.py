@@ -45,7 +45,7 @@ class Content:
         """
         This function creates the UI content and handles user interactions for the cleaning algorithm.
         """
-        ui.upload(on_upload=cb.handle_upload, label="Upload input file").classes('max-w-full')
+        ui.upload(on_upload=cb.handle_upload, label="Upload input file", auto_upload=True).classes('max-w-full')
         with ui.row():
             with ui.column().classes('#dbeafe items-stretch p-4'):
                 self.trim = ui.number('Trim value', value=0.01)

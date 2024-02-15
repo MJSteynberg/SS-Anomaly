@@ -21,7 +21,7 @@ def content()-> None:
         asyncio.run(await start_stream(log))
 
     # Frontend
-    ui.upload(on_upload=handle_upload, label="Upload input file").classes('max-w-full')
+    ui.upload(on_upload=handle_upload, label="Upload input file", auto_upload=True).classes('max-w-full')
     
     with ui.splitter() as splitter:
         with splitter.before:    

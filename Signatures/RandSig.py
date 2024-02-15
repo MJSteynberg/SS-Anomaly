@@ -43,7 +43,7 @@ class RandomSignature(ABC):
         pass
 
 class RandomSig(RandomSignature):  
-    def __init__(self, reservoir_dim: int, input_dim: int, act: str = 'tanh', anomaly: Union[sklearn.ensemble, sklearn.neighbors] = IForest(),
+    def __init__(self, reservoir_dim: int, input_dim: int, act: str = 'tanh', anomaly = IForest(),
                  reservoir_std: float = 0.15, contamination: float = 'auto', random_state: int = None, discard: int = 500):
         """
         Initialization of the RandomSig class
