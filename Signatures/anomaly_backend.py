@@ -1,8 +1,8 @@
 from nicegui import events, ui, app
 from nicegui.events import ValueChangeEventArguments
 import pandas as pd 
-import Path as p
-import RandSig as rs
+import Signatures.Path as p
+import Signatures.RandSig as rs
 import io
 from io import StringIO
 import plotly.graph_objects as go
@@ -20,9 +20,6 @@ with ui.header():
 logger = getLogger(__name__)
 logger.setLevel("DEBUG")
 
-
-
-# Frontend
 async def button_callback(volume: bool, price: bool, signed_volume: bool, datalength: int, price_plot: bool, volume_plot: bool, signed_volume_plot: bool, path_transform: str, clustering: str, sensitivity: float, reservoir_dim: int, input_dim: int, fig, plot):
     """Called after button click"""
     await asyncio.to_thread(perform_clustering, volume, price, signed_volume, datalength, price_plot, volume_plot, signed_volume_plot, path_transform, clustering, sensitivity, reservoir_dim, input_dim, fig, plot)
@@ -98,7 +95,7 @@ def perform_clustering(volume: bool, price: bool, signed_volume: bool, datalengt
         if input_dim.value == 1:
             fig.add_trace(go.Scatter(x=t[500:], y=data[500:,0], mode='markers', marker_color=df['Labels']))
         elif input_dim.value == 2 and volume.value and path_transform.value == 'Lead Lag':
-            fig.add_trace(go.Scatter(x=t[500:], y=data[500:,2], mode='markers', marker_color=df['Labels']))
+            fig.add_trace(go.Scatter(x=t[500:], y=data[500:,3], mode='markers', marker_color=df['Labels']))
         elif input_dim.value == 2 and volume.value and path_transform.value == 'Interpolation':
             fig.add_trace(go.Scatter(x=t[500:], y=data[500:,1], mode='markers', marker_color=df['Labels']))
         else:
@@ -109,7 +106,7 @@ def perform_clustering(volume: bool, price: bool, signed_volume: bool, datalengt
         if input_dim.value == 1:
             fig.add_trace(go.Scatter(x=t[500:], y=data[500:,0], mode='markers', marker_color=df['Labels']))
         elif input_dim.value == 2 and path_transform.value == 'Lead Lag':
-            fig.add_trace(go.Scatter(x=t[500:], y=data[500:,2], mode='markers', marker_color=df['Labels']))
+            fig.add_trace(go.Scatter(x=t[500:], y=data[500:,3], mode='markers', marker_color=df['Labels']))
         elif input_dim.value == 2 and path_transform.value == 'Interpolation':
             fig.add_trace(go.Scatter(x=t[500:], y=data[500:,1], mode='markers', marker_color=df['Labels']))
     plot.update()
