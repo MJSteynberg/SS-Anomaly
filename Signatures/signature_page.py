@@ -29,7 +29,7 @@ def content()-> None:
                 title=go.layout.Title(text="Anomaly Detection"),
                 xaxis=go.layout.XAxis(title=go.layout.xaxis.Title(text="Time")),
                 yaxis=go.layout.YAxis(title=go.layout.yaxis.Title(text="Volume/Price/Signed Volume")),
-                width=1000,
+                width=800,
                 height=700,
                 autosize=True
             ))
