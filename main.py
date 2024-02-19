@@ -25,13 +25,13 @@ def PDF_Summarizer():
         frontend.content()
 
 @ui.page('/cleaning')
-def cleaning():
+async def cleaning():
     """
     Renders the content of the cleaning page within a common page frame.
     """
     with theme.frame('Cleaning'):
         cont = cleaning_page.Content()  
-        cont.content()
+        await cont.content()
 
 @ui.page('/vpin')
 def vpin():
