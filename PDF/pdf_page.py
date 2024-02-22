@@ -50,8 +50,8 @@ def content():
             upload_func()
             system_role = ui.textarea("System Role", value="Give the title and authors of the paper and summarise the main sections: ")
             user_role = ui.textarea("User Role", value="You are a helpful research assistant.")
-            ui.markdown("Short guide: <br /> turbo has ~ 150 page context, trained up to Dec 2023. <br /> 32k has ~ 40 page context, trained up to 2021.")
-            model = ui.toggle(["gpt-4-turbo-preview", "gpt-4-32k"], value="gpt-4-turbo-preview")
+            ui.markdown("Short guide: <br /> turbo has ~ 150 page context, trained up to Dec 2023. <br /> 3.5 has ~ 20 page context, trained up to 2021.")
+            model = ui.toggle(["gpt-4-turbo-preview", "gpt-3.5-turbo-0125"], value="gpt-4-turbo-preview")
             
         with ui.column():
             log = ui.log(20).classes("w-full").style("height: 400px; width: 300px; color: #ffffff; background-color: #000000; ")
