@@ -1,6 +1,18 @@
 from nicegui import ui
 import VPIN.vpin_backend as vb
 def content() -> None:
+    """
+    Main function for running the VPIN algorithms.
+
+    This function sets up the user interface and handles user interactions.
+    The user can choose to do the adjpin, pin and vpin methods on the data.
+
+    Parameters:
+        None
+
+    Returns:
+        None
+    """
     with ui.card():
         ui.label("Upload Data")
         with ui.row():
@@ -40,6 +52,6 @@ def content() -> None:
                 vp_sample_length = ui.number("Sample Length", value=50)
                 vp_trading_hours = ui.number("Trading Hours", value=24)
 
-    #ui.button('Run Algorithm').on('click', lambda: vb.button_callback(adjpin, ap_method, ap_initialsets, ap_num_init, pin, p_initialsets, p_alpha, p_delta, p_mu, p_epsilon_b, p_epsilon_s, p_factorization, vpin, vp_time_bars, vp_buckets, vp_sample_length, vp_trading_hours)).classes(
-                        #'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full')
+    ui.button('Run Algorithm').on('click', lambda: vb.button_callback(adjpin, ap_method, ap_initialsets, ap_num_init, pin, p_initialsets, p_alpha, p_delta, p_mu, p_epsilon_b, p_epsilon_s, p_factorization, vpin, vp_time_bars, vp_buckets, vp_sample_length, vp_trading_hours)).classes(
+                        'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full')
 

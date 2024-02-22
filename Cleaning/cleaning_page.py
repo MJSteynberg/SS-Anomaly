@@ -30,6 +30,7 @@ class Content:
         asyncio.run(await cb.start_stream(self.log))
 
     def clear(self):
+
         # Delete all files with .pdf
         all_files = listdir()
         

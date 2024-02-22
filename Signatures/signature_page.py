@@ -2,7 +2,7 @@ from nicegui import ui, app, events, native
 from nicegui.events import ValueChangeEventArguments
 from Signatures.anomaly_backend import *
 
-def content()-> None:
+async def content()-> None:
     """
     Main function for running the anomaly detection algorithm.
 
@@ -21,7 +21,9 @@ def content()-> None:
         asyncio.run(await start_stream(log))
 
     # Frontend
-    ui.upload(on_upload=handle_upload, label="Upload input file", auto_upload=True).classes('max-w-full')
+    async def upload():
+        ui.upload(on_upload=handle_upload, label="Upload input file", auto_upload=True).classes('max-w-full')
+    await upload()
     
     with ui.splitter() as splitter:
         with splitter.before:    
@@ -91,7 +93,7 @@ def content()-> None:
                     ui.button('Clear plot').on('click', lambda fig=fig, plot = plot, log = log: clear(fig, plot, log)).classes(
                         'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full')
                     ui.space()
-                    ui.button('Run Algorithm').on('click', lambda volume = volume, price = price, signed_volume = signed_volume, datalength = datalength, price_plot = price_plot, volume_plot = volume_plot, signed_volume_plot = signed_volume_plot, path_transform = path_transform, clustering = clustering, sensitivity = sensitivity, reservoir_dim = reservoir_dim, input_dim = input_dim, fig = fig, plot = plot: button_callback(volume, price, signed_volume, datalength, price_plot, volume_plot, signed_volume_plot, path_transform, clustering, sensitivity, reservoir_dim, input_dim, fig, plot)).classes(
+                    ui.button('Run Algorithm').on('click', lambda volume = volume.value, price = price.value, signed_volume = signed_volume.value, datalength = datalength.value, price_plot = price_plot.value, volume_plot = volume_plot.value, signed_volume_plot = signed_volume_plot.value, path_transform = path_transform.value, clustering = clustering.value, sensitivity = sensitivity.value, reservoir_dim = reservoir_dim.value, input_dim = input_dim.value, fig = fig, plot = plot: button_callback(volume, price, signed_volume, datalength, price_plot, volume_plot, signed_volume_plot, path_transform, clustering, sensitivity, reservoir_dim, input_dim, fig, plot)).classes(
                         'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full')
 
                     

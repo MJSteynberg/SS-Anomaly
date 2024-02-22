@@ -6,7 +6,7 @@ import theme
 import Cleaning.cleaning_page as cleaning_page
 import VPIN.vpin_page as vpin_page
 import Signatures.signature_page as signature_page
-import PDF.frontend as frontend
+import PDF.pdf_page as pdf_page
 
 @ui.page('/')
 def home():
@@ -22,7 +22,7 @@ def PDF_Summarizer():
     Renders the content of the PDF Summarizer page within a common page frame.
     """
     with theme.frame('PDF Summarizer'):
-        frontend.content()
+        pdf_page.content()
 
 @ui.page('/cleaning')
 async def cleaning():
@@ -42,12 +42,12 @@ def vpin():
         vpin_page.content()
 
 @ui.page('/signature')
-def signature():
+async def signature():
     """
     Renders the content of the signature page within a common page frame.
     """
     with theme.frame('Signature'):
-        signature_page.content()
+        await signature_page.content()
 
 if __name__ in {"__main__", "__mp_main__"}:
     ui.run(title="Signature Anomaly Detection Methods")

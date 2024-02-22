@@ -1,5 +1,5 @@
 from nicegui import ui, native, app
-import PDF.backend as b
+import PDF.pdf_backend as b
 import asyncio
 from nicegui import ui, app, events
 import time
@@ -11,9 +11,9 @@ import os
 from logging import getLogger, StreamHandler
 from PyPDF2 import PdfReader
 
-async def button_click(folder, log, system_role, user_role):
+async def button_click(folder, log, system_role, user_role, model):
     global all_file_text
-    all_file_text = await asyncio.to_thread(b.get_pdf_summary, folder, log, system_role, user_role)
+    all_file_text = await asyncio.to_thread(b.get_pdf_summary, folder, log, system_role.value, user_role.value, model.value)
 
 
 def download_pdf(log):
@@ -50,10 +50,12 @@ def content():
             upload_func()
             system_role = ui.textarea("System Role", value="Give the title and authors of the paper and summarise the main sections: ")
             user_role = ui.textarea("User Role", value="You are a helpful research assistant.")
-
+            ui.markdown("Short guide: <br /> turbo has ~ 150 page context, trained up to Dec 2023. <br /> 32k has ~ 40 page context, trained up to 2021.")
+            model = ui.toggle(["gpt-4-turbo-preview", "gpt-4-32k"], value="gpt-4-turbo-preview")
+            
         with ui.column():
-            log = ui.log(20).classes("w-full").style("height: 400px; width: 350px; color: #ffffff; background-color: #000000; ")
-            ui.button("Summarise all pdfs", on_click=lambda: button_click(file_list, log, system_role, user_role))
+            log = ui.log(20).classes("w-full").style("height: 400px; width: 300px; color: #ffffff; background-color: #000000; ")
+            ui.button("Summarise all pdfs", on_click=lambda: button_click(file_list, log, system_role, user_role, model))
             ui.button("Download all pdfs", on_click=lambda: download_pdf(log))
             ui.button("Clear All", on_click=lambda: clear(log))
     ui.space().style('height: 100px;')
