@@ -33,6 +33,7 @@ logger.setLevel("DEBUG")
 
 async def button_callback(volume: bool, price: bool, signed_volume: bool, datalength: int, price_plot: bool, volume_plot: bool, signed_volume_plot: bool, path_transform: str, clustering: str, sensitivity: float, reservoir_dim: int, input_dim: int, fig, plot):
     """Called after button click"""
+    print(price_plot, volume_plot, signed_volume_plot)
     await asyncio.to_thread(perform_clustering, volume, price, signed_volume, datalength, price_plot, volume_plot, signed_volume_plot, path_transform, clustering, sensitivity, reservoir_dim, input_dim, fig, plot)
 
 def clear(fig, plot, log):
@@ -159,6 +160,10 @@ def perform_clustering(volume: bool, price: bool, signed_volume: bool, datalengt
 
     # Plot the results
     print('Creating Plot')
+    print('price_plot:', price_plot)
+    print('volume_plot:', volume_plot)
+    print('signed_volume_plot:', signed_volume_plot)
+    print(data.shape)
     if price_plot:
         if input_dim == 1:
             fig.add_trace(go.Scatter(x=t[500:], y=data[500:, 0], mode='markers', marker_color=df['Labels']))

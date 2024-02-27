@@ -59,16 +59,16 @@ async def content()-> None:
                 with ui.row():
                     ui.label('Choose the parameters:').style('align-items: left;')
                     ui.space()
-                    price = ui.checkbox('Price', value=False)
-                    volume = ui.checkbox('Volume', value=True)
+                    price = ui.checkbox('Price', value=True)
+                    volume = ui.checkbox('Volume', value=False)
                     signed_volume = ui.checkbox('Signed Volume', value=False)
 
                 with ui.row():
                     ui.label('Which parameter must be plotted:').style('align-items: left;')
                     ui.space()
 
-                    price_plot = ui.checkbox('Price', value=False)
-                    volume_plot = ui.checkbox('Volume', value=True)
+                    price_plot = ui.checkbox('Price', value=True)
+                    volume_plot = ui.checkbox('Volume', value=False)
                     signed_volume_plot = ui.checkbox('Signed Volume', value=False)
                 with ui.row():
                     ui.label('Choose the path transform:').style('align-items: left;')
