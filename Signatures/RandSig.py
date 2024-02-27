@@ -117,7 +117,7 @@ class RandomSig(RandomSignature):
         Returns:
             np.ndarray: Collection of all signatures for the length of input data N.
         """
-        self.scaler.fit_transform(X)
+        X = self.scaler.fit_transform(X)
         Z = np.zeros((N - self.discard, self.reservoir_dim))
         Z[0] = Z0
 
