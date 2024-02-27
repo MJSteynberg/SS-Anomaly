@@ -30,5 +30,5 @@ def frame(navtitle: str) -> Iterator[None]:
     
     # Create a column to center the content of the page
     with ui.column().classes('absolute-center items-center'):
-        ui.space().style('height: 400px;')
+        ui.space().style('height: 1000px;')
         yield
