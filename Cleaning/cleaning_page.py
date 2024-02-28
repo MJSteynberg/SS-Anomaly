@@ -46,6 +46,7 @@ class Content:
         """
         This function creates the UI content and handles user interactions for the cleaning algorithm.
         """
+        ui.space().style('height: 200px;')
         async def upload():
             ui.upload(on_upload=cb.handle_upload, label="Upload input file", auto_upload=True).classes('max-w-full')
         await upload()
